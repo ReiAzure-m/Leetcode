@@ -1,9 +1,0 @@
-class Solution:
-    def removeDuplicates(self, nums: List[int]) -> int:
-        nums_list = []
-        k = len(nums)
-        for n in nums:
-            if n not in nums_list:
-                nums_list.append(n)
-        nums[:] = nums_list[:]
-        return k
