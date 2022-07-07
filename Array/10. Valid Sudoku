@@ -15,19 +15,19 @@ class Solution:
                 if cell != '.':
                     x = int(cell)
                     
-                    # check in row r
+                    # check in rows
                     if x in rows[r]:
                         return False
                     else:
                         rows[r].add(x)
                     
-                    # check in col c
+                    # check in columns
                     if x in cols[c]:
                         return False
                     else:
                         cols[c].add(x)
                     
-                    # check in boxes b
+                    # check in sub-boxes
                     b = r//3 * 3 + c//3
                     if x in boxes[b]:
                         return False
