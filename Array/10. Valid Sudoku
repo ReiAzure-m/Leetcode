@@ -1,4 +1,4 @@
-# Approach 1: iterated loop
+# Solution 1: iterated loop
 
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
@@ -34,4 +34,65 @@ class Solution:
                     else:
                         boxes[b].add(x)
                         
+        return True
+
+#Solution 2: optimization
+
+  #checking rows
+        
+        for r in range(9):
+            rows = []
+            for c in range(9):
+                if board[r][c] == "." : continue
+                if board[r][c] in rows : return False
+                rows.append(board[r][c])
+        
+        
+        #checking Columns
+        
+        for c in range(9):
+            cols = []
+            for r in range(9):
+                if board[r][c] == "." : continue
+                if board[r][c] in cols : return False
+                cols.append(board[r][c])
+        
+        
+        #checking 3x3 sub-boxes
+        
+        for r in range(0, 9, +3):
+            for c in range(0, 9, +3):
+                
+                boxes = []
+                
+                for i in range(3):
+                    for j in range(3):
+                        
+                        
+                        if board[i+r][j+c] == "." : continue
+                        if board[i+r][j+c] in boxes : return False
+                        boxes.append(board[i+r][j+c])
+        
+        #if all passes
+        return True
+        
+    
+    
+# Solution 3: further optimization
+     def isValidSudoku(self, board: List[List[str]]) -> bool:
+        
+        rows = collections.defaultdict(set)
+        cols = collections.defaultdict(set)
+        sqrs = collections.defaultdict(set)
+        
+        for r in range(9):
+            for c in range(9):
+                x = board[r][c]
+                if x == '.': continue                
+                if x in rows[r] or x in cols[c] or x in sqrs[(r // 3, c // 3)]: return False
+                
+                rows[r].add(x)
+                cols[c].add(x)
+                sqrs[(r // 3, c // 3)].add(x)
+        
         return True
