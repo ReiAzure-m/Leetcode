@@ -1,0 +1,37 @@
+# Approach 1: iterated loop
+
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        # initiate sets for columns, rows and boxes
+        rows = [set() for i in range (9)]
+        cols = [set() for i in range (9)]
+        boxes = [set() for i in range (9)]
+        
+        # iterate 
+        
+        for r in range(9):
+            for c in range(9):
+                cell = board[r][c]
+                if cell != '.':
+                    x = int(cell)
+                    
+                    # check in row r
+                    if x in rows[r]:
+                        return False
+                    else:
+                        rows[r].add(x)
+                    
+                    # check in col c
+                    if x in cols[c]:
+                        return False
+                    else:
+                        cols[c].add(x)
+                    
+                    # check in boxes b
+                    b = r//3 * 3 + c//3
+                    if x in boxes[b]:
+                        return False
+                    else:
+                        boxes[b].add(x)
+                        
+        return True
