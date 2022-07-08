@@ -6,10 +6,11 @@ class Solution:
         mat = []
         n = len(matrix)
       
-        # transpose matrix row 
+        # transpose matrix 
         for c in range(n):
             row = []
             for r in range(n):
+                # iterate reverse row
                 row.append(matrix[-r-1][c])
             mat.append(row)
              
