@@ -1,0 +1,32 @@
+# Solution 1
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        t = s.copy()
+        for i in range(len(s)):
+            s[i] = t[-1-i]
+   
+   
+ # Solution 2
+ 
+        t = []
+        for i in range(len(s)):
+            t.append(s[-1-i])
+         s[:] = t[:]    
+         
+ 
+ # Solution 3: 2 lines
+   t = [s[-1-i] for i in range(len(s))]
+        s[:] = t[:]
+ 
+ 
+ # Solution 4:
+        
+        start=0
+        end = len(s)-1
+        while start<end:
+            s[start], s[end] = s[end], s[start]
+            start = start+1
+            end = end-1
