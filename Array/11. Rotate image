@@ -1,3 +1,4 @@
+## Solution 1: transpose rows
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
         """
@@ -15,3 +16,23 @@ class Solution:
             mat.append(row)
              
         matrix[:] = mat[:]
+
+
+## Solution 2: transpose and reverse at the same time
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        n = len(matrix)
+        
+        # initialize nxn zero matrix
+        mat = [([0]*n) for i in range(n)]
+      
+        # transpose and reverse at the same time, new_row = - col -1, new_col = row
+        for r in range(n):
+            for c in range(n):
+                mat[r][c] = matrix[-c-1][r]
+                   
+        matrix[:] = mat[:]
+                
