@@ -1,0 +1,16 @@
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        mat = []
+        n = len(matrix)
+      
+        # transpose matrix row 
+        for c in range(n):
+            row = []
+            for r in range(n):
+                row.append(matrix[-r-1][c])
+            mat.append(row)
+             
+        matrix[:] = mat[:]
