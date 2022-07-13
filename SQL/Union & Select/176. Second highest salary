@@ -1,0 +1,22 @@
+--- Approach 1: max()
+select max(salary) as SecondHighestSalary
+from Employee
+where salary not in (
+    select max(salary) from Employee)
+
+--- Approach 2: limit offset
+SELECT DISTINCT
+    Salary AS SecondHighestSalary
+FROM
+    Employee
+ORDER BY Salary DESC
+LIMIT 1 OFFSET 1
+
+--- Approach 3: if null
+SELECT
+    IFNULL(
+      (SELECT DISTINCT Salary
+       FROM Employee
+       ORDER BY Salary DESC
+        LIMIT 1 OFFSET 1),
+    NULL) AS SecondHighestSalary
