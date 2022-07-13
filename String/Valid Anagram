@@ -1,0 +1,8 @@
+# Approach 1: sorted()
+    def isAnagram(self, s: str, t: str) -> bool:
+        s = ''.join(sorted(s))
+        t = ''.join(sorted(t))
+        return s[:] == t[:]
+# shorter:
+return sorted(s) == sorted(t)
+
