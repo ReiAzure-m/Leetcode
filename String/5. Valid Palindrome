@@ -1,0 +1,10 @@
+ # use isalnum()
+ def isPalindrome(self, s: str) -> bool:
+        s = ''.join(ch for ch in s.lower() if ch.isalnum())
+        
+        return s[::-1] == s[::]
+        
+ 
+ # apply filter
+ s = ''.join(filter(ch.isalnum, s)        
+        return s[::-1].lower() == s[::].lower()
