@@ -1,0 +1,32 @@
+# Approach 1: successive arguments, use strip(), startswith(), isdigit()
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        
+        # strip leading white space
+        s = s.strip()
+        
+        #check being at the end of string
+        if not s:
+            return 0
+        
+        # check if the next character is '-' or '+'
+        if s.startswith('-'):
+            k = -1
+            s = s[1:]
+        elif s.startswith('+'):
+            k = 1
+            s = s[1:]
+        else:
+            k = 1
+           
+        # read until non-digit
+        t = 0
+        for x in s:
+            if not x.isdigit(): 
+                break
+            
+            # convert digits into interger
+            t = (t * 10) + int(x)           
+        
+        # check if value is inside the range
+        return max(-2**31, min(k*t, 2**31 -1))
