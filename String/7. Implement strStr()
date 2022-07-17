@@ -1,0 +1,16 @@
+    
+   #Solution 1: condition, index
+   def strStr(self, haystack: str, needle: str) -> int:
+        if not needle:
+            return 0
+ 
+        if needle[:] in haystack:
+            return haystack.index(needle[:])
+        else: 
+            return -1
+   
+   
+   # Solution 2: find()
+   def strStr(self, haystack: str, needle: str) -> int:
+        return haystack.find(needle)
+                    
