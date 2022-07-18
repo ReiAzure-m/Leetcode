@@ -1,0 +1,12 @@
+ def maxSubArray(self, nums: List[int]) -> int:
+        maxsum = nums[0]
+        temp = 0
+        if len(nums) == 1:
+            return nums[0]
+        for num in nums:
+            if temp <0:
+                temp =0
+            temp += num
+            maxsum=max(maxsum,temp)
+        return maxsum
+                    
