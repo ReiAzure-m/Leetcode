@@ -1,0 +1,17 @@
+-- Solution 1: subquery using ordered temp table
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+  RETURN (
+      # Write your MySQL query statement below.
+      select min(salary)
+      as getNthHighestSalary
+      from employee
+      where salary in (select * from (
+                       select salary
+                       from employee
+                       order by salary desc
+                       limit n) temp_table )
+  );
+END
+
+-- Solution 2: group by, dense_rank
