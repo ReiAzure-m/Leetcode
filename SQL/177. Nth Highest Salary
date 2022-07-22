@@ -14,4 +14,45 @@ BEGIN
   );
 END
 
--- Solution 2: group by, dense_rank
+-- Solution 2: limit-offset
+BEGIN
+    declare k int;
+    set k=n-1;
+    
+  RETURN (
+      select distinct salary 
+           from Employee 
+           order by salary desc 
+           limit 1 
+           offset k 
+         
+  );
+END
+
+-- Solution 3: dense_rank()
+BEGIN
+
+  RETURN (
+      select salary from (
+          Select *, 
+          dense_rank() over (
+              order by salary desc
+          ) as rnk
+          from Employee) e
+      where rnk = N
+      limit 1
+  );
+END
+
+-- Solution 4: count, max()
+BEGIN
+
+  RETURN (
+      Select max(salary) 
+      from employee e1 
+      where N-1= (
+          Select count(distinct salary) 
+          from employee e2 
+          where e2.salary > e1.salary)
+  );
+END
