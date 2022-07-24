@@ -1,0 +1,21 @@
+-- Approach 1: not in
+select distinct p.product_id, product_name
+from product p
+join sales s
+on p.product_id = s.product_id
+where sale_date BETWEEN '2019-01-01' AND '2019-03-3'
+and p.product_id not in (
+    select product_id
+    from sales
+    where sale_date <'2019-01-01' 
+    or sale_date > '2019-03-31')
+    
+    
+-- Approach 2: having, max, min
+select distinct p.product_id, product_name
+from product p
+join sales s
+on p.product_id = s.product_id
+group by p.product_id
+having min(sale_date) >='2019-01-01' 
+and max(sale_date) <= '2019-03-31'
